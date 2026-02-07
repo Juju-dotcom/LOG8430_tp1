@@ -16,8 +16,10 @@ jobs:
       - name: Set up JDK 8
         uses: actions/setup-java@v4
         with:
-          java-version: 11
-          distribution: 'zulu' # Alternative distribution options are available
+          java-version: 8
+          distribution: temurin
+      - name: Disable Gradle daemon
+        run: echo "org.gradle.daemon=false" >> gradle.properties
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
@@ -35,4 +37,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd Phonograph
-          ./gradlew build sonar --info
+          ./gradlew build sonar --no-daemon --info
