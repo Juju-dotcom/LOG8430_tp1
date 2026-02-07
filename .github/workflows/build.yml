@@ -37,4 +37,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           cd Phonograph
-          ./gradlew sonarqube --no-daemon --info
+          ./gradlew sonarqube -Dsonar.gradle.skipCompile=true --no-daemon --info
